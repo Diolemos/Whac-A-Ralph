@@ -18,19 +18,22 @@
 }
 
 .panel{
-    margin-top: 1rem;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-top: 1rem;
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1rem; 
+  justify-items: center;
+  align-items: center;  
 
 }
 
 .square{
     height: 150px;
-    border: 1px solid black;
+    border: 5px solid #ffd700;
+    border-style: solid;
     width: 150px;
-    background-color: #7ce0bf;
+    background: linear-gradient(to bottom, white, #7ce0bf);;
 }
 
 .enemy{
