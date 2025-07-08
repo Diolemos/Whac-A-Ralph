@@ -17,7 +17,8 @@ const state = {
         result: 0,
         currentTime: 10,
         highScore: 0,
-        gameIsActive: false
+        gameIsActive: false,
+        isSoundOn: true,
 
     },
     actions: {
@@ -59,7 +60,8 @@ state.view.gameOverBox.style.animation = "popBounce 0.5s ease forwards";
     }
 }
 function playSound(audioName){
-    let audio = new Audio(`./src/audio/${audioName}.m4a`)
+     if (!state.values.isSoundOn) return;
+    let audio = new Audio(`./src/audio/${audioName}.mp3`)
     audio.volume = 0.2;
     audio.play();
 }
@@ -96,7 +98,7 @@ function addListenerHitbox(){
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
-                playSound("hit");
+                playSound("squeak");
             };
         })
     })
@@ -147,9 +149,18 @@ function startGame() {
 
 function init(){
     loadHighScore();
-      state.view.backdrop.style.display = "block";
-    
-      state.view.playButton.addEventListener("click", startGame);
+    state.view.backdrop.style.display = "block";
+    //🔈
+    document.querySelector("#sound-checkbox").addEventListener("change", (event) => {
+    state.values.isSoundOn = event.target.checked;
+    localStorage.setItem("sound", state.values.isSoundOn);
+});
+const savedSoundPref = localStorage.getItem("sound");
+if (savedSoundPref !== null) {
+    state.values.isSoundOn = savedSoundPref === "true";
+    document.querySelector("#sound-checkbox").checked = state.values.isSoundOn;
+}
+    state.view.playButton.addEventListener("click", startGame);
 }
 
 init();
