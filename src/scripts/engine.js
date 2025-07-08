@@ -1,36 +1,42 @@
 const state = {
     view: {
-        squares: document.querySelectorAll(".square"),
-        enemy: document.querySelector(".ememy"),
+        panel: document.querySelector(".panel"),
         timeLeft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
-        highScore: document.querySelector("#high-score")
+        highScore: document.querySelector("#high-score"),
+        playButton: document.querySelector("#play-btn"),
+        squares: []
     },
-    values:{
-        
+    values: {
         gameVelocity: 1000,
-        hitPosition: 0,
+        hitPosition: null,
         result: 0,
-        currentTime: 60,
-        highScore: 0 
+        currentTime: 10,
+        highScore: 0,
+        gameIsActive: false
+
     },
     actions: {
-        timerId:setInterval(randomSquare, 1000),
-        countdownTimerId: setInterval(countdown, 1000),
+        timerId: null,
+        countdownTimerId: null
     }
 };
+
 function countdown(){
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
     if(state.values.currentTime <= 0) {
         clearInterval(state.actions.countdownTimerId)
         clearInterval(state.actions.timerId)
+         state.values.gameIsActive = false; 
     //check for highest score
      if (state.values.result > state.values.highScore) {
             state.values.highScore = state.values.result;
             localStorage.setItem("highScore", state.values.highScore);
         } 
        alert("Game ove! Your score: "+state.values.result);
+       
+        state.view.playButton.style.display = "block";
     }
 }
 function playSound(audioName){
@@ -63,6 +69,7 @@ function randomSquare(){
 function addListenerHitbox(){
     state.view.squares.forEach((square)=>{
         square.addEventListener("mousedown",()=>{
+            if (!state.values.gameIsActive) return;
             if(square.id=== state.values.hitPosition){
                 state.values.result++
                 state.view.score.textContent = state.values.result;
@@ -79,10 +86,44 @@ function loadHighScore() {
         state.view.highScore.textContent = state.values.highScore;
     }
 }
+
+function createSquares() {
+    state.view.panel.innerHTML = ""; // Clear previous squares
+    for (let i = 1; i <= 9; i++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.id = i;
+        state.view.panel.appendChild(square);
+    }
+    state.view.squares = document.querySelectorAll(".square");
+}
+
+
+function resetGameState() {
+    state.values.result = 0;
+    state.values.currentTime = 10;
+    state.values.hitPosition = null;
+    state.view.score.textContent = 0;
+    state.view.timeLeft.textContent = 60;
+}
+
+
+function startGame() {
+    resetGameState();
+    createSquares();
+    addListenerHitbox();
+
+    state.values.gameIsActive = true; 
+    state.actions.timerId = setInterval(randomSquare, state.values.gameVelocity);
+    state.actions.countdownTimerId = setInterval(countdown, 1000);
+
+    state.view.playButton.style.display = "none";
+}
+
 function init(){
     loadHighScore();
     //moveEnemy();
-    addListenerHitbox();
+      state.view.playButton.addEventListener("click", startGame);
 }
 
 init();
