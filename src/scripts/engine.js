@@ -1,3 +1,6 @@
+//TODO: make a visual feeback when hitting Ralph
+//TODO: update gameVelocity, change it dynamically to make the game more fun
+//TODO: Mobile version. with a drawer menu? 
 const state = {
     view: {
         panel: document.querySelector(".panel"),
