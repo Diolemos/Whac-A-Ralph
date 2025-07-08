@@ -132,3 +132,11 @@ transition: opacity 0.3s ease;
   animation: popBounce 0.5s ease forwards;
  
 }
+
+body.hammer-cursor {
+  cursor: url('../images/hammer.png') 16 16, auto;
+}
+
+body.hammer-cursor.hammer-hit {
+  cursor: url('../images/hammer-hit.png') 16 16, auto;
+}

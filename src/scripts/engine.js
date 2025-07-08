@@ -49,6 +49,7 @@ function countdown(){
 state.view.highScoreFinal.textContent = state.values.highScore;
 
 // Reset the animation 
+document.body.classList.remove("hammer-cursor", "hammer-hit");
 state.view.gameOverBox.style.display = "block";
 state.view.gameOverBox.style.animation = "none";
 void state.view.gameOverBox.offsetWidth; // Force reflow
@@ -87,6 +88,11 @@ function addListenerHitbox(){
         square.addEventListener("mousedown",()=>{
             if (!state.values.gameIsActive) return;
             if(square.id=== state.values.hitPosition){
+                 // 🔨 
+        document.body.classList.add("hammer-hit");
+        setTimeout(() => {
+            document.body.classList.remove("hammer-hit");
+        }, 100);
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
@@ -127,6 +133,7 @@ function resetGameState() {
 function startGame() {
     state.view.backdrop.style.display = "none";
     state.view.gameOverBox.style.display = "none";
+    document.body.classList.add("hammer-cursor");
     resetGameState();
     createSquares();
     addListenerHitbox();
