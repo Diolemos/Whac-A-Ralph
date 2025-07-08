@@ -88,23 +88,29 @@ function randomSquare(){
 
 
 
-function addListenerHitbox(){
-    state.view.squares.forEach((square)=>{
-        square.addEventListener("mousedown",()=>{
-            if (!state.values.gameIsActive) return;
-            if(square.id=== state.values.hitPosition){
-                 // 🔨 
-        document.body.classList.add("hammer-hit");
-        setTimeout(() => {
-            document.body.classList.remove("hammer-hit");
-        }, 100);
-                state.values.result++
-                state.view.score.textContent = state.values.result;
-                state.values.hitPosition = null;
-                playSound("squeak");
-            };
-        })
-    })
+
+
+function addListenerHitbox() {
+  state.view.panel.addEventListener("mousedown", (event) => {
+    if (!state.values.gameIsActive) return;
+
+    const square = event.target;
+
+    // Only handle clicks on squares
+    if (!square.classList.contains("square")) return;
+
+    if (square.id === state.values.hitPosition) {
+      document.body.classList.add("hammer-hit");
+      setTimeout(() => {
+        document.body.classList.remove("hammer-hit");
+      }, 100);
+
+      state.values.result++;
+      state.view.score.textContent = state.values.result;
+      state.values.hitPosition = null;
+      playSound("squeak");
+    }
+  });
 }
 function loadHighScore() {
     const savedHighScore = localStorage.getItem("highScore");
