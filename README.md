@@ -27,7 +27,7 @@ Features include:
 
 - Backdrop disables gameplay interaction after time runs out
 
-A responsive game board rendered dynamically on each play
+- A responsive game board rendered dynamically on each play
 
 
 Sound toggle for customizable gameplay experience
