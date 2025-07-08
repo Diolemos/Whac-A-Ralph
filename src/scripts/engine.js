@@ -26,9 +26,14 @@ function countdown(){
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
     if(state.values.currentTime <= 0) {
+  
         clearInterval(state.actions.countdownTimerId)
         clearInterval(state.actions.timerId)
          state.values.gameIsActive = false; 
+               state.view.squares.forEach(square => {
+    square.classList.remove("enemy");
+    square.classList.add("disabled");
+});
     //check for highest score
      if (state.values.result > state.values.highScore) {
             state.values.highScore = state.values.result;

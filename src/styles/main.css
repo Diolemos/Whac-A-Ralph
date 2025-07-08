@@ -62,3 +62,9 @@
 .flash {
   animation: flash 0.3s ease;
 }   
+
+.square.disabled {
+  background: #ccc;          
+  opacity: 0.5;              
+  cursor: not-allowed;       
+}
