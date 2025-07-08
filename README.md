@@ -55,15 +55,15 @@ Technical Highlights
 
 ---
 
-#Feel free to mess around 
+# Feel free to mess around 
 - I am planning to...
 
-[] Add visual feedback animation when Ralph is hit
+- [ ] Add visual feedback animation when Ralph is hit
 
-[] Dynamically change gameVelocity as the game progresses
+- [ ] Dynamically change gameVelocity as the game progresses
 
-[] Build a mobile version with responsive layout and (maybe) a drawer menu
+- [ ] Build a mobile version with responsive layout and (maybe) a drawer menu
 
-[] organize engine and CSS into modules for readability 
+- [ ] organize engine and CSS into modules for readability 
 
 👉 [Play it here](https://diolemos.github.io/Whac-A-Ralph/)
