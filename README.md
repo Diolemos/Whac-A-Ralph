@@ -6,7 +6,7 @@ Originally based on a DIO (Digital Innovation One) project, this version extends
 
 
 <p align="center">
-  <img src=".src//images/Screenshot.png" alt="Whac-a-Ralph gameplay screenshot" width="400" />
+  <img src="./src/images/Screenshot.png" alt="Whac-a-Ralph gameplay screenshot" width="400" />
 </p>
 
 Features include:
