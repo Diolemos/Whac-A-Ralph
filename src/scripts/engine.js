@@ -7,6 +7,8 @@ const state = {
         playButton: document.querySelector("#play-btn"),
         squares: [],
         backdrop: document.querySelector("#backdrop"),
+        gameOverBox: document.querySelector("#game-over-box"),
+        finalScore: document.querySelector("#final-score"),
     },
     values: {
         gameVelocity: 1000,
@@ -41,9 +43,11 @@ function countdown(){
             state.values.highScore = state.values.result;
             localStorage.setItem("highScore", state.values.highScore);
         } 
-       alert("Game ove! Your score: "+state.values.result);
-       
-        state.view.playButton.style.display = "block";
+      // Show the final score in the box
+    state.view.finalScore.textContent = state.values.result;
+    state.view.gameOverBox.style.display = "block";
+    state.view.backdrop.style.display = "block";
+    state.view.playButton.style.display = "block";
     }
 }
 function playSound(audioName){
@@ -117,6 +121,7 @@ function resetGameState() {
 
 function startGame() {
     state.view.backdrop.style.display = "none";
+    state.view.gameOverBox.style.display = "none";
     resetGameState();
     createSquares();
     addListenerHitbox();
