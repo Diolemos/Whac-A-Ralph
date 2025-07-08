@@ -60,7 +60,7 @@ Technical Highlights
 
 [] Add visual feedback animation when Ralph is hit
 
-[] Dynamically increase gameVelocity as the game progresses
+[] Dynamically change gameVelocity as the game progresses
 
 [] Build a mobile version with responsive layout and (maybe) a drawer menu
 
