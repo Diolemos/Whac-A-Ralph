@@ -15,6 +15,8 @@
     background-color: #000000;
     color: rgb(255, 255, 255);
     border-bottom: 5px solid #ffd700;
+    padding-right: 15px;
+     padding-left: 15px;
 }
 
 .panel{
@@ -139,4 +141,58 @@ body.hammer-cursor {
 
 body.hammer-cursor.hammer-hit {
   cursor: url('../images/hammer-hit.png') 16 16, auto;
+}
+
+#sound-toggle {
+ 
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: yellow;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ffd700;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
 }
