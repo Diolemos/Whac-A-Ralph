@@ -68,3 +68,31 @@
   opacity: 0.5;              
   cursor: not-allowed;       
 }
+
+#play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000055;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.7); 
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  display: none; 
+transition: opacity 0.3s ease;
+}

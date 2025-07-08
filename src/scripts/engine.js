@@ -5,7 +5,8 @@ const state = {
         score: document.querySelector("#score"),
         highScore: document.querySelector("#high-score"),
         playButton: document.querySelector("#play-btn"),
-        squares: []
+        squares: [],
+        backdrop: document.querySelector("#backdrop"),
     },
     values: {
         gameVelocity: 1000,
@@ -33,6 +34,7 @@ function countdown(){
                state.view.squares.forEach(square => {
     square.classList.remove("enemy");
     square.classList.add("disabled");
+    state.view.backdrop.style.display = "block";
 });
     //check for highest score
      if (state.values.result > state.values.highScore) {
@@ -114,6 +116,7 @@ function resetGameState() {
 
 
 function startGame() {
+    state.view.backdrop.style.display = "none";
     resetGameState();
     createSquares();
     addListenerHitbox();
@@ -127,6 +130,7 @@ function startGame() {
 
 function init(){
     loadHighScore();
+      state.view.backdrop.style.display = "block";
     //moveEnemy();
       state.view.playButton.addEventListener("click", startGame);
 }
