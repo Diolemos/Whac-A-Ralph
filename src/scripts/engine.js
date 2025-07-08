@@ -9,6 +9,7 @@ const state = {
         backdrop: document.querySelector("#backdrop"),
         gameOverBox: document.querySelector("#game-over-box"),
         finalScore: document.querySelector("#final-score"),
+        highScoreFinal: document.querySelector("#high-score-final"),
     },
     values: {
         gameVelocity: 1000,
@@ -45,7 +46,13 @@ function countdown(){
         } 
       // Show the final score in the box
     state.view.finalScore.textContent = state.values.result;
-    state.view.gameOverBox.style.display = "block";
+state.view.highScoreFinal.textContent = state.values.highScore;
+
+// Reset the animation 
+state.view.gameOverBox.style.display = "block";
+state.view.gameOverBox.style.animation = "none";
+void state.view.gameOverBox.offsetWidth; // Force reflow
+state.view.gameOverBox.style.animation = "popBounce 0.5s ease forwards";
     state.view.backdrop.style.display = "block";
     state.view.playButton.style.display = "block";
     }
@@ -73,9 +80,7 @@ function randomSquare(){
     state.values.hitPosition = randomSquare.id;
 }
 
-// function moveEnemy(){
-//     state.values.timerId = setInterval(randomSquare, state.values.gameVelocity);
-// }
+
 
 function addListenerHitbox(){
     state.view.squares.forEach((square)=>{
@@ -136,7 +141,7 @@ function startGame() {
 function init(){
     loadHighScore();
       state.view.backdrop.style.display = "block";
-    //moveEnemy();
+    
       state.view.playButton.addEventListener("click", startGame);
 }
 

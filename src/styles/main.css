@@ -97,6 +97,20 @@
 transition: opacity 0.3s ease;
 }
 
+@keyframes popBounce {
+  0% {
+    transform: scale(0.5) translate(-50%, -50%);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
 #game-over-box {
   position: absolute;
   top: 35%;
@@ -105,7 +119,7 @@ transition: opacity 0.3s ease;
   background: #000;
   border: 4px solid #ffd700;
   color: #fff;
-  
+  font-family: 'Press Start 2P', monospace;
   font-size: 1rem;
   padding: 1.5rem;
   text-align: center;
@@ -115,4 +129,6 @@ transition: opacity 0.3s ease;
   width: 300px;
   max-width: 90%;
   border-radius: 4px;
+  animation: popBounce 0.5s ease forwards;
+ 
 }
